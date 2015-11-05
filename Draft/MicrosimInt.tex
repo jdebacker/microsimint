@@ -375,7 +375,29 @@
     \begin{spacing}{1.5}
     \vspace{10mm}
 
-    The steady-state equilibrium is characterized by the system of $2JS$ equations and $2JS$ unknowns $\bar{n}_{j,s}$ and $\bar{b}_{j,s+1}$. Appendix \ref{AppSSsolve} details how to solve for the steady-state equilibrium. Because our qualitative results and conclusions are unchanged across the equilibrium time path of the economy from the baseline steady state to the new steady state after the policy change, we confine our definition of the non-steady-state equilibrium and its computational solution to Appendix \ref{AppNonSSsolve}.\footnote{We can provide equilibrium time path solutions for each policy experiment upon request.}
+    The steady-state equilibrium is characterized by the system of $2JS$ equations and $2JS$ unknowns $\bar{n}_{j,s}$ and $\bar{b}_{j,s+1}$. Appendix \ref{AppSSsolve} details how to solve for the steady-state equilibrium. 
+    The non-steady state equilibrium is characterized by $2JST$ equations and $2JST$ knowns, where $T$ is the number of periods along the transition path from the current state to the steady state.  The definition of the stationary non-steady-state equilibrium is similar to Definition \ref{DefEquilSS}, with the stationary steady-state equilibrium definition being a special case of the stationary non-steady-state equilibrium.
+
+  \vspace{7mm}
+
+  \hrule
+  \begin{definition}[\textbf{Stationary non-steady-state equilibrium}]\label{DefEquilNonSS}
+    A non-autarkic stationary non-steady-state equilibrium in the overlapping generations model with $S$-period lived agents and heterogeneous ability $e_{j,s}$ is defined as allocations $n_{j,s,t}$ and $\hat{b}_{j,s+1,t+1}$ and prices $\hat{w}_t$ and $r_t$ for all $j$, $s$, and $t$ such that the following conditions hold:
+     \begin{enumerate}
+        \item individuals have symmetric beliefs $\Omega(\cdot)$ about the evolution of the distribution of savings, and those beliefs about the future distribution of savings equal the realized outcome (rational expectations),
+          \begin{equation*}
+            \bm{\hat{\Gamma}}_{t+u} = \bm{\hat{\Gamma}}^e_{t+u} = \Omega^u\left( \bm{\hat{\Gamma}}_t\right) \quad\forall t, \quad u\geq 1
+          \end{equation*}
+        \item individuals optimize according to \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}
+        \item Firms optimize according to \eqref{EqFOCwageStat} and \eqref{EqFOCrate}, and
+        \item Markets clear according to \eqref{EqMktClrLabStat} and \eqref{EqMktClrCapStat}.
+     \end{enumerate}
+  \end{definition}
+  \hrule
+
+\vspace{10mm}
+    
+    We describe the methodology to compute the solution to the non-steady-state equilibrium to Appendix \ref{AppNonSSsolve}.  We will use the time path solution to find effects of tax policies on macroeconomic variables over the budget window.
 
 
   \subsection{Calibration}\label{SecCalib}
@@ -395,8 +417,8 @@
         $\{f_s\}_{s=1}^S$ & Fertility rates by age & (see App. \ref{AppPopGrowth}) \\
         $\{i_s\}_{s=1}^S$ & Immigration rates by age & (see App. \ref{AppPopGrowth}) \\
         $\{\rho_s\}_{s=1}^S$ & Mortality rates by age & (see App. \ref{AppPopGrowth}) \\
-        $\{e_{j,s}\}_{j,s=1}^{J,S}$ & Deterministic ability process & (see App. \ref{AppAbilCalib}) \\
-        $\{\lambda_j\}_{j=1}^J$ & Lifetime income group percentages & (see App. \ref{AppAbilCalib}) \\
+        $\{e_{j,s}\}_{j,s=1}^{J,S}$ & Deterministic ability process & (see DEMPRS (2015)) \\
+        $\{\lambda_j\}_{j=1}^J$ & Lifetime income group percentages & $[0.25,0.25,0.20,0.10,0.10,0.09,0.01]$ \\
         $J$ & Number of lifetime income groups & 7 \\
         $S$ & Maximum periods in economically active & 80 \\[-2mm]
         &\quad individual life & \\
@@ -407,10 +429,10 @@
         $\tilde{l}$ & Maximum hours of labor supply & 1 \\
         $\beta$ & Discount factor & $(0.96)^\frac{80}{S}$ \\
         $\sigma$ & Coefficient of constant relative risk aversion & 3 \\
-        $b$ & Scale parameter in utility of leisure & (see App. \ref{AppEllipseUtil}) \\
-        $\upsilon$ & Shape parameter in utility of leisure & (see App. \ref{AppEllipseUtil}) \\
-        $k$ & constant parameter in utility of leisure & (see App. \ref{AppEllipseUtil}) \\
-        $\chi^n_s$ & Disutility of labor level parameters & (see Sec. \ref{sec:calib}) \\
+        $b$ & Scale parameter in utility of leisure & 0.6701 \\
+        $\upsilon$ & Shape parameter in utility of leisure & 1.3499 \\
+        $k$ & constant parameter in utility of leisure & -0.6548 \\
+        $\chi^n_s$ & Disutility of labor level parameters & [1.53, 43.22] \\
         $\chi^b_j$ & Utility of bequests level parameters &  $[9.264 \times 10^{-5}, 118,648.915]$ \\
         \hline
         $Z$ & Level parameter in production function & 1 \\
@@ -666,13 +688,26 @@ The tax functions above are specific to a given age and tax year.  Thus, average
 
 When we look at the raw output from the microsimulation model, we find that there are several observations with extreme values for their average effective tax rate.  Since this is a ratio, such outliers are possible, for example when the denominator, adjusted total income, is very small.  We omit such outliers by making the following restrictions on the raw output of the microsimulation model.  First, we exclude observations with an average effective tax rate greater than 1.5 times the highest statutory marginal tax rate.  Second, we exclude observations where the average effective tax rate is less than the lowest statutory marginal tax rate on income minus the maximum phase-in rate for the Earned Income Tax Credit (EITC).  Finally, since total income cannot be negative in our DGE model, we drop observations from the microsimulation model where adjusted total income is less than \$5.\footnote{We choose \$5 rather than \$0 to provided additional assurance that small income values are not driving large AETRs.}
 
-With the output of the microsimulation model cleaned, we move to our estimation.  We estimate a transformation of the AETR function in Equation \ref{EqATR} separately for each tax year and each year of age of the primary filer.  Specifically, we transform this function from a function of level of income to a function of percentage deviations from mean income.  This helps with the statistical objective function, which under this transformation won't be unduly influenced by the large discrepancies between mean capital and labor income.  The transformed AETR function is estimated using a constrained, weighted, non-linear least squares estimator.
+With the output of the microsimulation model cleaned, we move to our estimation.  We estimate a transformation of the AETR function in Equation \ref{EqATR} separately for each tax year and each year of age of the primary filer.  Specifically, we transform this function from a function of level of income to a function of percentage deviations from mean income.  This helps with the statistical objective function, which under this transformation won't be unduly influenced by the large discrepancies between mean capital and labor income.  The transformed AETR function is estimated using a constrained, weighted, non-linear least squares estimator.  The weighting in this estimator come from the weights assigned to the filers in the microsimulation model.
 
-SHOW statistical objective function here...
+Let $\Theta=(A,B,C,D,E,F,max_x,min_x,max_y,min_y)$ be the vector of parameters of the tax function.  The estimate $\hat{Theta}$ is then the value of $\Theta$ that solves:
 
-The estimated models fit....
+\begin{equation}
+\begin{split}
+&\mathcal{L} = \min_{\Theta} \sum_{i=1}^{N} \left(\tau_{i}-\tau(\Theta,x_{i},y_{i})\right)^{2} w_{i}, \\
+&\quad\quad\quad \text{subject to: } A\geq0, B\geq0, C\geq0, D\geq0, E\geq0, F\geq0, \\
+&\quad\quad\quad\quad\quad\quad\quad max_{x}\geq min_x, max_{y}\geq min_y   
+\end{split}
+\end{equation}
 
-Put picture showing model fit (e.g., the scatter plot with 3d graph overlayed).  Also, table summarizing estimated parameters and model fit.
+Where $\tau_{i}$ is the average effective tax rate for observation $i$ from the microsimulation output, $x_{i}$ is labor income, $y_{i}$ is capital income, and $w_{i}$ is the sampling weight of this observation.  The number $N$ is the total number of observations from the microsimulation output.  Note that we estimate these functions separately for each age, from 21-80, and tax year separately.  We omit subscripts denoting age and tax year here, but we will have $\hat{Theta}_{s,t}$ for each age, $s$, and tax year, $t$, in the budget window.
+
+PICTURE OF MODEL FIT....e.g., the scatter plot with 3d graph overlayed)
+
+The microsimulation model only estimates the effects of taxation over a 10-year budget window. The DGE model has a time horizon well beyond that.  We assume that the file year tax policy is continued indefinitely from the end of the budget window forward.  In addition, the data provide very few observations of primary filers with ages greater than 80 years old.  The DGE model allows individuals to live for up to 100 periods.  We apply the tax function estimated for 80 year-olds to those with model ages 80-100.
+
+
+TABLE SUMMARIZING estimated parameters and model fit FOR BASELINE POLICY ONLY.
 
 
 %  \subsection{Incorporating tax functions into DGE Model}\label{SecIntegrDGE}
@@ -977,25 +1012,8 @@ This won't be done by Thursday night...
 
   \setcounter{equation}{0}
 
-  This section defines the non-steady-state transition path equilibrium of the model and outlines the benchmark time path iteration (TPI) method of \citet{AuerbachKotlikoff:1987} for solving the stationary non-steady-state equilibrium transition path of the distribution of savings. The definition of the stationary non-steady-state equilibrium is similar to Definition \ref{DefEquilSS}, with the stationary steady-state equilibrium definition being a special case of the stationary non-steady-state equilibrium.
-
-  \vspace{7mm}
-
-  \hrule
-  \begin{definition}[\textbf{Stationary non-steady-state equilibrium}]\label{DefEquilNonSS}
-    A non-autarkic stationary non-steady-state equilibrium in the overlapping generations model with $S$-period lived agents and heterogeneous ability $e_{j,s}$ is defined as allocations $n_{j,s,t}$ and $\hat{b}_{j,s+1,t+1}$ and prices $\hat{w}_t$ and $r_t$ for all $j$, $s$, and $t$ such that the following conditions hold:
-     \begin{enumerate}
-        \item individuals have symmetric beliefs $\Omega(\cdot)$ about the evolution of the distribution of savings, and those beliefs about the future distribution of savings equal the realized outcome (rational expectations),
-          \begin{equation*}
-            \bm{\hat{\Gamma}}_{t+u} = \bm{\hat{\Gamma}}^e_{t+u} = \Omega^u\left( \bm{\hat{\Gamma}}_t\right) \quad\forall t, \quad u\geq 1
-          \end{equation*}
-        \item individuals optimize according to \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}
-        \item Firms optimize according to \eqref{EqFOCwageStat} and \eqref{EqFOCrate}, and
-        \item Markets clear according to \eqref{EqMktClrLabStat} and \eqref{EqMktClrCapStat}.
-     \end{enumerate}
-  \end{definition}
-  \hrule
-
+  This section describes the solution to the non-steady-state transition path equilibrium of the model and outlines the benchmark time path iteration (TPI) method of \citet{AuerbachKotlikoff:1987} for solving the stationary non-steady-state equilibrium transition path of the distribution of savings. 
+ 
   \vspace{10mm}
 
   \noindent Taken together, the individual labor-leisure and intended bequest decisions in the last period of life show that the optimal labor supply and optimal intended bequests for age $s=E+S$ are each functions of individual savings, total bequests received, and the prices in that period: $n_{j,E+S,t}=\phi\bigl(\hat{b}_{j,E+S,t},\hat{BQ}_{j,t},\hat{w}_t,r_t\bigr)$ and $\hat{b}_{j,E+S+1,t+1}=\psi\bigl(\hat{b}_{j,E+S,t},\hat{BQ}_{j,t},\hat{w}_t,r_t\bigr)$. These two decisions are characterized by final-age version of the static labor supply Euler equation \eqref{EqEulerLabStat} and the static intended bequests Euler equation \eqref{EqEulerSavEpSstat}. individuals in their second-to-last period of life in period $t$ have four decisions to make. They must choose how much to work this period, $n_{j,E+S-1,t}$, and next period, $n_{j,E+S,t+1}$, how much to save this period for next period, $\hat{b}_{j,E+S,t+1}$, and how much to bequeath next period, $\hat{b}_{j,E+S+1,t+2}$. The optimal responses for this individual are characterized by the $s=E+S-1$ and $s=E+S$ versions of the static Euler equations \eqref{EqEulerLabStat}, the $s=E+S-1$ version of the intertemporal Euler equation \eqref{EqEulerSavStat}, and the $s=E+S$ static bequest Euler equation \eqref{EqEulerSavEpSstat}, respectively.
