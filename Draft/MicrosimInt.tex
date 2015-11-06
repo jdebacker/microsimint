@@ -68,7 +68,7 @@
   \and
   Kerk L. Phillips\footnote{Brigham Young University, Department of Economics, 166 FOB, Provo, Utah 84602, (801) 422-5928, \href{mailto:kerk_phillips@byu.edu}{kerk\_phillips@byu.edu}.}}
 \date{November 2015 \\
-  \scriptsize{(version 15.11.b)}}
+  \scriptsize{(version 15.11.c)}}
 \maketitle
 \vspace{-9mm}
 \begin{abstract}
@@ -221,14 +221,11 @@
     An individual also has $S-1$ dynamic Euler equations that govern his saving decisions, $b_{j,s+1,t+1}$, with the included precautionary bequest saving in case of unexpected death. These are given by:
     \begin{equation}\label{EqEulerSavGen}
       \begin{split}
-        &(c_{j,s,t})^{-\sigma} = \rho_s\chi^b_j\bigl(b_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_s)(c_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}) - \frac{\partial T_{j,s+1,t+1}}{\partial b_{j,s+1,t+1}}\Biggr] \\
-        &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j,t,\quad\text{and}\quad E+1\leq s \leq E+S-1 \\
-        &\qquad\text{where}\quad \frac{\partial T_{j,s+1,t+1}}{\partial b_{j,s+1,t+1}} = ...\\
-        &\qquad\qquad r_{t+1}\Biggl(\tau^I(F\hat{a}_{j,s+1,t+1}) + \frac{F\hat{a}_{j,s+1,t+1}CD\left[2A(F\hat{a}_{j,s+1,t+1}) + B\right]}{\left[A(F\hat{a}_{j,s+1,t+1})^2 + B(F\hat{a}_{j,s+1,t+1}) + C\right]^2}\Biggr) ... \\
-        &\qquad\qquad + \tau^W(\hat{b}_{j,s+1,t+1}) + \frac{\hat{b}_{j,s+1,t+1}PHM}{\left(H\hat{b}_{j,s+1,t+1} + M\right)^2}
+        &(c_{j,s,t})^{-\sigma} = \rho_s\chi^b_j\bigl(b_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_s)(c_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}) - \frac{\partial T_{s+1,t+1}}{\partial b_{j,s+1,t+1}}\Biggr] \\
+        &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j,t,\quad\text{and}\quad E+1\leq s \leq E+S-1
       \end{split}
     \end{equation}
-    The parameters $P$, $H$, and $M$ characterize the progressive wealth tax function $\tau^W(\hat{b}) = P\frac{H\hat{b}}{H\hat{b}+M}$. In the baseline, the wealth tax is zero.\footnote{In the wealth tax experiment, the parameters are calibrated so that the tax rate on average wealth in the steady state is one percent, the rate on the highest steady-state wealth is two percent, and the rate on the highest steady-state wealth is 2.5 percent.} Lastly, Each individual also has one static first order condition for the last period of life $s=E+S$, which governs how much to bequeath to the following generation given that the individual will die with certainty.  This condition is:
+    where the marginal tax rate with respect to savings $\frac{\partial T_{s,t}}{\partial b_{j,s,t}}$ is described in equation \ref{EqMTRy}. Lastly, Each individual also has one static first order condition for the last period of life $s=E+S$, which governs how much to bequeath to the following generation given that the individual will die with certainty.  This condition is:
     \begin{equation}\label{EqEulerSavEpS}
       (c_{j,E+S,t})^{-\sigma} = \chi^b_j(b_{j,E+S+1,t+1})^{-\sigma} \quad\forall j,t
     \end{equation}
@@ -265,7 +262,7 @@
 
   \subsection{Government fiscal policy}\label{SecGovt}
 
-    The government is represented by a balanced budget constraint. The government collects taxes ($\tau_{s,t}(x,y)(x+y)$) from all individuals and divides total revenues equally among individuals in the economy to determine the lump-sum transfer.
+    The government is represented by a balanced budget constraint. The government collects taxes $\tau_{s,t}(x,y)(x+y)$ from all individuals and divides total revenues equally among individuals in the economy to determine the lump-sum transfer.
     \begin{equation}\label{EqGovtBC}
       T^H_t = \frac{1}{\tilde N_t} \sum_s \sum_j \omega_{s,t}\lambda_j\tau_{s,t}(w_t e_{j,s}n_{j,s,t}, r_t b_{j,s,t})\bigl(w_t e_{j,s}n_{j,s,t} + r_t b_{j,s,t}\bigr)
     \end{equation}
@@ -301,7 +298,7 @@
         $\hat{b}_{j,s,t}\equiv\frac{b_{j,s,t}}{e^{g_y t}}$ & $\hat{L}_t\equiv\frac{L_t}{\tilde{N}_t}$ & $\hat{K}_t\equiv\frac{K_t}{e^{g_y t}\tilde{N}_t}$ & $r_t$ \\[2mm]
         $\hat{w}_t\equiv\frac{w_t}{e^{g_y t}}$ &  & $\hat{BQ}_{j,t}\equiv\frac{BQ_{j,t}}{e^{g_y t}\tilde{N}_t}$ &  \\[2mm]
         $\hat{y}_{j,s,t}\equiv\frac{y_{j,s,t}}{e^{g_y t}}$ &  &  &  \\[2mm]
-        $\hat{T}_{j,s,t}\equiv\frac{T_{j,s,t}}{e^{g_y t}}$ &  &  &  \\[2mm]
+        $\hat{T}_{s,t}\equiv\frac{T_{j,s,t}}{e^{g_y t}}$ &  &  &  \\[2mm]
         \hline\hline
       \end{tabular}
       \begin{tablenotes}
@@ -314,10 +311,9 @@
 
     \begin{equation}\label{EqEulerLabStat}
       \begin{split}
-        &(\hat{c}_{j,s,t})^{-\sigma}\Biggl(\hat{w}_t e_{j,s} - \frac{\partial\hat{T}_{j,s,t}}{\partial n_{j,s,t}}\Biggr) = \chi^n_{s}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \\
+        &(\hat{c}_{j,s,t})^{-\sigma}\Biggl(\hat{w}_t e_{j,s} - \frac{\partial\hat{T}_{s,t}}{\partial n_{j,s,t}}\Biggr) = \chi^n_{s}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \\
         &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j,t, \quad\text{and}\quad E+1\leq s\leq E+S \\
-        &\qquad\text{where}\quad \hat{c}_{j,s,t} = \left(1 + r_t\right)\hat{b}_{j,s,t} + \hat{w}_t e_{j,s}n_{j,s,t} + \frac{\hat{BQ}_{j,t}}{\lambda_j} - e^{g_y}\hat{b}_{j,s+1,t+1} - \hat{T}_{j,s,t} \\
-        &\qquad\text{and}\quad \frac{\partial \hat{T}_{j,s,t}}{\partial n_{j,s,t}} = \hat{w}_t e_{j,s}\biggl[\tau^I\bigl(F\hat{a}_{j,s,t}\bigr) + \frac{F\hat{a}_{j,s,t}CD\bigl[2A(F\hat{a}_{j,s,t})+B\bigr]}{\bigl[A(F\hat{a}_{j,s,t})^2+B(F \hat{a}_{j,s,t})+C\bigr]^2} + \tau^P\Biggr] \\
+        &\qquad\text{where}\quad \hat{c}_{j,s,t} = \left(1 + r_t\right)\hat{b}_{j,s,t} + \hat{w}_t e_{j,s}n_{j,s,t} + \frac{\hat{BQ}_{j,t}}{\lambda_j} - e^{g_y}\hat{b}_{j,s+1,t+1} - \hat{T}_{s,t} \\
         &\qquad\text{and}\quad \hat{b}_{j,E+1,t} = 0 \quad\forall j,t
       \end{split}
     \end{equation}
@@ -325,11 +321,8 @@
     \begin{equation}\label{EqEulerSavStat}
       \begin{split}
         &(\hat{c}_{j,s,t})^{-\sigma} = ... \\
-        &e^{-g_y\sigma}\Biggl(\rho_s\chi^b_j \bigl(\hat{b}_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_s)(\hat{c}_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}) - \frac{\partial T_{j,s+1,t+1}}{\partial b_{j,s+1,t+1}}\Biggr]\Biggr) \\
-        &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j,t,\quad\text{and}\quad E+1\leq s \leq E+S-1 \\
-        &\qquad\text{where}\quad \frac{\partial T_{j,s+1,t+1}}{\partial b_{j,s+1,t+1}} = ...\\
-        &\qquad\qquad r_{t+1}\Biggl(\tau^I(F\hat{a}_{j,s+1,t+1}) + \frac{F\hat{a}_{j,s+1,t+1}CD\left[2A(F\hat{a}_{j,s+1,t+1}) + B\right]}{\left[A(F\hat{a}_{j,s+1,t+1})^2 + B(F\hat{a}_{j,s+1,t+1}) + C\right]^2}\Biggr) ... \\
-        &\qquad\qquad + \tau^W(\hat{b}_{j,s+1,t+1}) + \frac{\hat{b}_{j,s+1,t+1}PHM}{\left(H\hat{b}_{j,s+1,t+1} + M\right)^2}
+        &e^{-g_y\sigma}\Biggl(\rho_s\chi^b_j \bigl(\hat{b}_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_s)(\hat{c}_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}) - \frac{\partial \hat{T}_{s+1,t+1}}{\partial \hat{b}_{j,s+1,t+1}}\Biggr]\Biggr) \\
+        &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j,t,\quad\text{and}\quad E+1\leq s \leq E+S-1
       \end{split}
     \end{equation}
 
@@ -354,7 +347,7 @@
       \hat{BQ}_{j,t+1} = \frac{(1+r_{t+1})\lambda_j}{1+\tilde{g}_{n,t}}\left(\sum_{s=E+1}^{E+S}\rho_s\hat{\omega}_{s,t}\hat{b}_{j,s+1,t+1}\right) \quad\forall j,t
     \end{equation}
     \begin{equation}\label{EqGovtBCstat}
-      \hat{T}^H_t = \sum_s \sum_j \hat{\omega}_{s,t}\lambda_j\left(\hat{T}^I_{j,s,t} + \hat{T}^P_{j,s,t} + \hat{T}^{BQ}_{j,s,t} + \hat{T}^W_{j,s,t}\right)
+      \hat{T}^H_t = \sum_s \sum_j \hat{\omega}_{s,t}\lambda_j \hat{T}_{s,t}
     \end{equation}
 
     We can now define the stationary steady-state equilibrium for this economy in the following way.
@@ -375,34 +368,35 @@
     \begin{spacing}{1.5}
     \vspace{10mm}
 
-    The steady-state equilibrium is characterized by the system of $2JS$ equations and $2JS$ unknowns $\bar{n}_{j,s}$ and $\bar{b}_{j,s+1}$. Appendix \ref{AppSSsolve} details how to solve for the steady-state equilibrium. 
-    The non-steady state equilibrium is characterized by $2JST$ equations and $2JST$ knowns, where $T$ is the number of periods along the transition path from the current state to the steady state.  The definition of the stationary non-steady-state equilibrium is similar to Definition \ref{DefEquilSS}, with the stationary steady-state equilibrium definition being a special case of the stationary non-steady-state equilibrium.
+    The steady-state equilibrium is characterized by the system of $2JS$ equations and $2JS$ unknowns $\bar{n}_{j,s}$ and $\bar{b}_{j,s+1}$. Appendix \ref{AppSSsolve} details how to solve for the steady-state equilibrium.
 
-  \vspace{7mm}
+    The non-steady state equilibrium is characterized by $2JST$ equations and $2JST$ unknowns, where $T$ is the number of periods along the transition path from the current state to the steady state.  The definition of the stationary non-steady-state equilibrium is similar to Definition \ref{DefEquilSS}, with the stationary steady-state equilibrium definition being a special case of the stationary non-steady-state equilibrium.
 
-  \hrule
-  \begin{definition}[\textbf{Stationary non-steady-state equilibrium}]\label{DefEquilNonSS}
-    A non-autarkic stationary non-steady-state equilibrium in the overlapping generations model with $S$-period lived agents and heterogeneous ability $e_{j,s}$ is defined as allocations $n_{j,s,t}$ and $\hat{b}_{j,s+1,t+1}$ and prices $\hat{w}_t$ and $r_t$ for all $j$, $s$, and $t$ such that the following conditions hold:
-     \begin{enumerate}
-        \item individuals have symmetric beliefs $\Omega(\cdot)$ about the evolution of the distribution of savings, and those beliefs about the future distribution of savings equal the realized outcome (rational expectations),
-          \begin{equation*}
-            \bm{\hat{\Gamma}}_{t+u} = \bm{\hat{\Gamma}}^e_{t+u} = \Omega^u\left( \bm{\hat{\Gamma}}_t\right) \quad\forall t, \quad u\geq 1
-          \end{equation*}
-        \item individuals optimize according to \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}
-        \item Firms optimize according to \eqref{EqFOCwageStat} and \eqref{EqFOCrate}, and
-        \item Markets clear according to \eqref{EqMktClrLabStat} and \eqref{EqMktClrCapStat}.
-     \end{enumerate}
-  \end{definition}
-  \hrule
+    \vspace{7mm}
 
-\vspace{10mm}
-    
+    \hrule
+    \begin{definition}[\textbf{Stationary non-steady-state equilibrium}]\label{DefEquilNonSS}
+      A non-autarkic stationary non-steady-state equilibrium in the overlapping generations model with $S$-period lived agents and heterogeneous ability $e_{j,s}$ is defined as allocations $n_{j,s,t}$ and $\hat{b}_{j,s+1,t+1}$ and prices $\hat{w}_t$ and $r_t$ for all $j$, $s$, and $t$ such that the following conditions hold:
+       \begin{enumerate}
+          \item individuals have symmetric beliefs $\Omega(\cdot)$ about the evolution of the distribution of savings, and those beliefs about the future distribution of savings equal the realized outcome (rational expectations),
+            \begin{equation*}
+              \bm{\hat{\Gamma}}_{t+u} = \bm{\hat{\Gamma}}^e_{t+u} = \Omega^u\left( \bm{\hat{\Gamma}}_t\right) \quad\forall t, \quad u\geq 1
+            \end{equation*}
+          \item individuals optimize according to \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}
+          \item Firms optimize according to \eqref{EqFOCwageStat} and \eqref{EqFOCrate}, and
+          \item Markets clear according to \eqref{EqMktClrLabStat} and \eqref{EqMktClrCapStat}.
+       \end{enumerate}
+    \end{definition}
+    \hrule
+
+    \vspace{10mm}
+
     We describe the methodology to compute the solution to the non-steady-state equilibrium to Appendix \ref{AppNonSSsolve}.  We will use the time path solution to find effects of tax policies on macroeconomic variables over the budget window.
 
 
   \subsection{Calibration}\label{SecCalib}
 
-    Table \ref{TabExogVars} shows the calibrated values for the exogenous variables and parameters. The values of these parameters come from \citet{DEMPRS2015}.
+    Table \ref{TabExogVars} shows the calibrated values for the exogenous variables and parameters taken from \citet{DEMPRW2015}.
 
     \begin{table}[htbp] \centering \captionsetup{width=4.7in}
     \caption{\label{TabExogVars}\textbf{List of exogenous variables and baseline calibration values}}
@@ -417,7 +411,7 @@
         $\{f_s\}_{s=1}^S$ & Fertility rates by age & (see App. \ref{AppPopGrowth}) \\
         $\{i_s\}_{s=1}^S$ & Immigration rates by age & (see App. \ref{AppPopGrowth}) \\
         $\{\rho_s\}_{s=1}^S$ & Mortality rates by age & (see App. \ref{AppPopGrowth}) \\
-        $\{e_{j,s}\}_{j,s=1}^{J,S}$ & Deterministic ability process & (see DEMPRS (2015)) \\
+        $\{e_{j,s}\}_{j,s=1}^{J,S}$ & Deterministic ability process & (see \citealp{DEMPRW2015}) \\
         $\{\lambda_j\}_{j=1}^J$ & Lifetime income group percentages & $[0.25,0.25,0.20,0.10,0.10,0.09,0.01]$ \\
         $J$ & Number of lifetime income groups & 7 \\
         $S$ & Maximum periods in economically active & 80 \\[-2mm]
@@ -440,156 +434,70 @@
         $\delta$ & Capital depreciation rate & $1-(1-0.05)^\frac{80}{S}$ \\
         $g_y$ & Growth rate of labor augmenting & $(1+0.03)^\frac{80}{S}-1$ \\[-2mm]
         & \quad technological progress & \\
-%        \hline
-%        $A$ & Coefficient on squared term in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-%        $B$ & Coefficient on linear term in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-%        $C$ & Constant coefficient in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-%        $D$ & Level parameter for $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-%        $F$ & Income factor for $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-%        $\tau^P$ & Payroll tax rate & 0.15 \\
-%        $\{\theta^j\}_{j=1}^J$ & Replacement rate by average income & (see App. \ref{AppReplRate}) \\
-%        $\tau^{BQ}$ & Bequest (estate) tax rate & 0 \\
-%        $P$ & Level parameter for $\tau^W(\cdot)$ & 0 \\
-%        $H$ & Coefficient on linear term in $\tau^W(\cdot)$ & 1 \\
-%        $M$ & Constant coefficient in $\tau^W(\cdot)$ & 1 \\
         \hline
         $T$ & Number of periods to steady state & 160 \\
         $\nu$ & Dampening parameter for TPI & 0.2 \\
         \hline\hline
       \end{tabular}
-      % \begin{tablenotes}
-      %   \scriptsize{\item[]Note: Maybe put sources here.}
-      % \end{tablenotes}
       \end{threeparttable}
     \end{table}
 
-   Note that the scale parameter $\chi^n_s$ takes on 80 values (one for each model age) that increase with age, representing an increasing disutility of labor that is not modeled anywhere else in the utility function. An hour of labor for an older person becomes more costly due to biological reasons related to aging. Such a parametrization helps to fit fact that hours worked decline much more sharply later in life than do hourly earnings.
+    Note that the scale parameter $\chi^n_s$ takes on 80 values (one for each model age) that increase with age, representing an increasing disutility of labor that is not modeled anywhere else in the utility function. An hour of labor for an older person becomes more costly due to biological reasons related to aging. Such a parametrization helps to fit fact that hours worked decline much more sharply later in life than do hourly earnings.
 
-   Heterogeneity in the scale parameter multiplying useful in having the model generate a distribution of wealth similar to that observed in the data.  Note that without such heterogeneity in this parameter, individuals at the high end of the earnings distribution in our model would not save as much as their real world counterparts given the deterministic earnings process in our model. They have no precautionary savings motive, only the warm-glow bequest motive for savings.  One can view the assumption of heterogeneous utility weights as not just variation in preference across households, but also as reflecting differences in family size, expectations of income growth, or other variations that are not explicitly modeled here.  We thus allow  $\{\chi^b_j\}_{j=1}^7$ to take on seven values, one for each lifetime income group.
-
-
-%    \begin{figure}[htb]\centering \captionsetup{width=4.0in}
-%      \caption{\label{fig:chi_n}\textbf{Calibrated values of $\chi^n_s$}}
-%      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/chi_n.png}}}
-%    \end{figure}
-%
-%    \begin{figure}[htb]\centering \captionsetup{width=4.0in}
-%      \caption{\label{fig:labor_model_data}\textbf{Life-cycle Average Labor Supply: Model vs. Data}}
-%      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/labor_dist_comparison.png}}}
-%    \end{figure}
-%
-%    \begin{figure}[htb]\centering \captionsetup{width=4.0in}
-%      \caption{\label{fig:labor_dist_data_fit}\textbf{Labor Distribution from Data, with extrapolation}}
-%      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/labor_dist_data_withfit.png}}}
-%    \end{figure}
-%
-%    \begin{figure}[htbp]\centering \captionsetup{width=4.0in}
-%      \caption{\label{fig:wealth_model_data}\textbf{Wealth over the life-cycle by age for each lifetime earnings group: Model vs. Data}}
-%      \fbox{\resizebox{4.0in}{5.5in}{\includegraphics{images/wealth_dist_comparison.png}}}
-%    \end{figure}
-
-    \clearpage
-
-    % \begin{table}[htbp] \centering \captionsetup{width=4.5in}
-    %   \caption{\label{TabWealthMoms}\textbf{Comparison of average wealth holdings moments (in dollars) between the model and data, by age and income group}}
-    %     \begin{threeparttable}
-    %     \begin{tabular}{>{\footnotesize}l |>{\footnotesize}l |>{\footnotesize}c |>{\footnotesize}c |>{\footnotesize}c >{\footnotesize}c >{\footnotesize}c}
-    %       \hline\hline
-    %       \multicolumn{1}{c}{\footnotesize{Income Group}} & \multicolumn{1}{c}{\footnotesize{}} & \multicolumn{1}{c}{\footnotesize{Average wealth}} & \multicolumn{1}{c}{\footnotesize{Average wealth}} &  \multicolumn{1}{c}{\footnotesize{Percent}}\\
-    %       \multicolumn{1}{c}{\footnotesize{(percentile)}}& \multicolumn{1}{c}{\footnotesize{Age Group}} & \multicolumn{1}{c}{\footnotesize{model steady state}} & \multicolumn{1}{c}{\footnotesize{Data}} & \multicolumn{1}{c}{\footnotesize{Difference}}\\
-    %       \hline
-    %       0\%-24\%   & ages 21 to 45 & 432.35 & -16,011.93\tnote{a} & 102.7 \%\\
-    %                  & ages 45 to 65 & 3,347.79 & 5,916.55 & -43.4\% \\
-    %       \hline
-    %       25\%-49\%  & ages 21 to 45 & 21,090.65 & 17,155.31 &  22.9\% \\
-    %                  & ages 45 to 65 & 81,229.52 & 100,570.01 &  -19.2\% \\
-    %       \hline
-    %       50\%-69\%  & ages 21 to 45 & 51,502.14 & 66,589.05 &  -22.7\% \\
-    %                  & ages 45 to 65 & 188,324.24 & 297,851.75 &  -37.8\% \\
-    %       \hline
-    %       70\%-79\%  & ages 21 to 45 & 94,511.89 & 146,347.66 &  -35.4\% \\
-    %                  & ages 45 to 65 & 338,299.41 & 577,941.17 &  -41.5\% \\
-    %       \hline
-    %       80\%-89\%  & ages 21 to 45 & 180,240.48 & 261,039.27 &  -31.0\% \\
-    %                  & ages 45 to 65 & 613,371.04 & 1,002,995.73 &  -38.8\% \\
-    %       \hline
-    %       90\%-98\%  & ages 21 to 45 & 558,903.46 & 720,473.78 &  -22.4\% \\
-    %                  & ages 45 to 65 & 1,870,106.49 & 3,178,335.54 &  -41.2\% \\
-    %       \hline
-    %       99\%-100\% & ages 21 to 45 & 1,856,446.62 & 2,363,198.97 &  -21.4\% \\
-    %                  & ages 45 to 65 & 5,748,935.34 & 10,803,634.69 &  -46.8\% \\
-    %       \hline
-    %       \hline\hline
-    %     \end{tabular}
-    %     \begin{tablenotes}
-    %       \scriptsize{\item[a]Because average wealth holdings for the bottom quartile of wealth holders age 21 to 45 is the only data category with a negative average wealth, we calibrated our parameters to match a positive number very close to zero (\$ 500). Otherwise, our minimization routine would search indefinitely for a solution. The model cannot generate negative wealth.}
-    %     \end{tablenotes}
-    %     \end{threeparttable}
-    % \end{table}
-
-%        The average labor hours data from Figures \ref{fig:labor_model_data} and \ref{fig:labor_dist_data_fit} come from the Current Population Survey (CPS) March Supplement from 1992 to 2013. We determined hours worked in a year by the average hours worked per week in the last year and the number of weeks worked in the last year. We then compute mean hours worked by year of age using population weights. CPS on those near age 80 are noisy, thus we smooth the hours worked data for these year in the following way. We linearly fit the hours works fro ages 76 to 100 using the slope from hours worked for ages 60 to 76. For the average wealth by age and income group in Figure \ref{fig:wealth_model_data}, we use the 2007, 2010, and 2013 Survey of Consumer Finances and obtain the distribution of total net worth by age using population weights.
-
-    %%% note that the SCF wealth data are in 2013$ and the wage profiles for ability are in 2005$. This maybe problematic if we are calibrating using the levels of wealth. If we use shares, we are ok.
-
-%    Figure \ref{FigLabSS} shows the stationary steady-state distribution of individual labor supply $\bar{n}_{j,s}$ and Figure \ref{FigConsSS} shows the steady-state distribution of consumption $\bar{c}_{j,s}$ for the baseline calibration of the model described in Table \ref{TabExogVars}. Notice from Figure \ref{FigConsSS} the hump-shaped pattern of consumption over the life cycle for each ability type, which is consistent with consumption data.
-%
-%    \begin{figure}[htb]\centering \captionsetup{width=4.0in}
-%      \caption{\label{FigLabSS}\textbf{Stationary steady-state distribution of individual labor supply $\bar{n}_{j,s}$ for $S=80$ and $J=7$} from baseline model}
-%      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/labor_dist_2D.png}}}
-%    \end{figure}
-%
-%    \begin{figure}[htb]\centering \captionsetup{width=4.0in}
-%      \caption{\label{FigConsSS}\textbf{Stationary steady-state distribution of consumption $\bar{c}_{j,s}$ for $S=80$ and $J=7$ in baseline model}}
-%      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/consumption_2D.png}}}
-%    \end{figure}
-
-    \FloatBarrier
+    Heterogeneity in the scale parameter multiplying useful in having the model generate a distribution of wealth similar to that observed in the data.  Note that without such heterogeneity in this parameter, individuals at the high end of the earnings distribution in our model would not save as much as their real world counterparts given the deterministic earnings process in our model. They have no precautionary savings motive, only the warm-glow bequest motive for savings.  One can view the assumption of heterogeneous utility weights as not just variation in preference across households, but also as reflecting differences in family size, expectations of income growth, or other variations that are not explicitly modeled here.  We thus allow  $\{\chi^b_j\}_{j=1}^7$ to take on seven values, one for each lifetime income group.
 
 
 \section{Integration of Microsimulation Model with DGE Model}\label{SecIntegr}
 
- The interface between the microsimulation and DGE model will take place through the tax function, $T_{j,s,t}$, and in particular the income and payroll tax functions, $T^I_{j,s,t} + T^P_{j,s,t}$.  In particular, the tax calculator will produce microdata that can be used to calibrate these functions in a way that is consistent with the tax law parameters entered into the microsimulation model.  Note that the payroll tax structure will be much simpler, and we will enter the parameters describing that function straight into the DGE model.
+  The interface between the microsimulation and DGE model will take place through the tax function $T_{s,t}$ in the household budget constraint \eqref{EqBC}. In particular, the tax calculator will produce microdata that can be used to calibrate these functions in a way that is consistent with the tax law parameters entered into the microsimulation model. Note that our estimated net tax liability function will be an approximation of the true underlying tax structure, incentives, and behavior, but our estimated parameters will fit smooth functions to the microsimulation model data that can be entered into the DGE model.
 
- We begin our discussion of the integration by describing the functional form we'll use approximate the effective tax rate function.  Next, we explain how these functional forms are estimated used data generated by the microsimulation model and provide some measures of the fit of the functional form under the baseline tax policies.  Finally, we discuss how the tax parameters affecting payroll taxes are linked between the microsimulation and DGE models.
+  We begin our discussion of the integration by describing the functional form we use approximate the effective tax rate function. We then explain how these functional forms are estimated using data generated by the microsimulation model and provide some measures of the fit of the functional form under the baseline tax policies. Finally, we discuss how the tax parameters affecting payroll taxes are linked between the microsimulation and DGE models.
 
 
   \subsection{Modeling microsimulation tax structure}\label{SecIntegrMicrosim}
 
-
-We model the average effective tax rate as a ratio of polynomials in labor and capital income.  Important properties of this functional form are that it allows for negative average and marginal tax rates and that it produces marginal tax rate functions that are function of both labor and capital income.  While we could have fit functions of total tax liability or marginal tax rates, fitting the average effective tax rate function has the benefit that the average effective tax rate is bounded above by one when the income concept used is total economic income.
+    We model the average effective tax rate as a ratio of polynomials in labor and capital income.  Important properties of this functional form are that it allows for negative average and marginal tax rates and that it produces marginal tax rate functions that are function of both labor and capital income.  While we could have fit functions of total tax liability or marginal tax rates, fitting the average effective tax rate function has the benefit that the average effective tax rate is bounded above by one when the income concept used is total economic income.
 
     Let $x$ be total labor income $x\equiv wen$, and let $y$ be total capital income $y\equiv rb$. Also, let the labor income share of total income be $\phi\equiv\frac{x}{x+y}=\frac{wen}{rb + wen}$.  We then write our average effective tax rate functions as follows:
 
     \begin{equation}\label{EqATR}
       \begin{split}
-        \tau(x,y) = &\Phi\Omega + K \\
+        \tau(x,y) = &\Phi\Lambda + K \\
         &\text{where}\quad \Phi \equiv \Bigl[\phi(max_x - min_x) + (1 - \phi)(max_y - min_y)\Bigr] \\
-        &\text{and}\quad \Omega \equiv \biggl(\frac{Ax^2 + By^2 + Cxy + Dx + Ey}{Ax^2 + By^2 + Cxy + Dx + Ey + F}\biggr) \\
+        &\text{and}\quad \Lambda \equiv \biggl(\frac{Ax^2 + By^2 + Cxy + Dx + Ey}{Ax^2 + By^2 + Cxy + Dx + Ey + F}\biggr) \\
         &\text{and}\quad K \equiv \phi min_x + (1 - \phi)min_y \\
         &\text{where}\quad A,B,C,D,E,F,max_x,max_y > 0 \\
         &\text{and}\quad max_x > min_x \quad\text{and}\quad max_y > min_y
       \end{split}
     \end{equation}
 
-    The parameter $max_x$ is the maximum average tax rate and $min_x$ is the minimum average tax rate for all labor income $x$ when capital income is zero $y=0$. Conversely, the parameter $max_y$ is the maximum average tax rate and $min_y$ is the minimum average tax rate for all capital income $y$ when labor income is zero $x=0$. These parameters are summarized in Table \ref{TaxParams}.
+    \begin{figure}[htbp]\centering \captionsetup{width=4.0in}
+      \caption{\label{FigMicroTaxData3D}\textbf{Scatter plot of effective tax rates, labor income, and capital income from microsimulation model: $t=2015$ and $s=43$}}
+      \fbox{\resizebox{4.0in}{3.0in}{\includegraphics{images/MicroTaxData3D.png}}}
+    \end{figure}
+
+    This functional form with the ratio of polynomials $\Lambda = \frac{z}{z + k}$ is a nice structure because it is bounded between 0 and 1 for positive polynomial coefficients and positive labor and capital income. This class of functions also seems to robustly fit the shape of the tax data. Figure \ref{FigMicroTaxData3D} shows a 3 dimensional scatterplot of the effective tax rate data from the microsimulation model as a function of total labor income $x$ and total capital income $y$ with both incomes truncated at \$500,000 in order to better see the data. These data clearly have the negative exponential shape delivered by the functional form $\Lambda$.
+
+    The parameter $max_x$ is the maximum average tax rate and $min_x$ is the minimum average tax rate for all labor income $x$ when capital income is zero $y=0$. Conversely, the parameter $max_y$ is the maximum average tax rate and $min_y$ is the minimum average tax rate for all capital income $y$ when labor income is zero $x=0$. The parameters in the $\Phi$ and $K$ term allow for some simple slope changes from labor income to capital income to better fit the data. These parameters are summarized in Table \ref{TabTaxParams}.
 
 
-    \begin{table}[htbp] \centering \captionsetup{width=4.7in}
-    \caption{\label{TaxParams}\textbf{List tax policy parameters}}
+    \begin{table}[htbp] \centering \captionsetup{width=3.8in}
+    \caption{\label{TabTaxParams}\textbf{Description of tax function $\tau(x,y)$ parameters}}
       \begin{threeparttable}
       \begin{tabular}{>{\footnotesize}c |>{\footnotesize}l }
         \hline\hline
         Symbol & \quad\quad\quad\quad Description  \\
         \hline
-        $A$ & Coefficient on squared term in $\tau^I(\cdot)$  \\
-        $B$ & Coefficient on linear term in $\tau^I(\cdot)$  \\
-        $C$ & Constant coefficient in $\tau^I(\cdot)$  \\
-        $D$ & Level parameter for $\tau^I(\cdot)$  \\
-        $F$ & Income factor for $\tau^I(\cdot)$\\
-        $max_x$ & Maximum AETR on labor income  \\
-        $min_x$ & Minimum AETR on labor income \\
-        $max_y$ & Maximum AETR on capital income  \\
-        $max_y$ & Minimum AETR on capital income \\
+        $A$ & Coefficient on squared $x $term in $\tau(\cdot)$  \\
+        $B$ & Coefficient on squared $y$ term in $\tau(\cdot)$  \\
+        $C$ & Coefficient on interaction term in $\tau(\cdot)$  \\
+        $D$ & Coefficient on linear $x$ term in $\tau(\cdot)$  \\
+        $E$ & Coefficient on linear $y$ term in $\tau(\cdot)$  \\
+        $F$ & Constant term in $\tau(\cdot)$\\
+        $max_x$ & Maximum AETR on labor income $x$ given $y=0$  \\
+        $min_x$ & Minimum AETR on labor income $x$ given $y=0$ \\
+        $max_y$ & Maximum AETR on capital income $y$ given $x=0$ \\
+        $max_y$ & Minimum AETR on capital income $y$ given $x=0$ \\
         \hline\hline
       \end{tabular}
       % \begin{tablenotes}
@@ -598,17 +506,15 @@ We model the average effective tax rate as a ratio of polynomials in labor and c
       \end{threeparttable}
     \end{table}
 
-
-
-    The total tax function is simply the average tax function times total income $\tau(x,y)(x+y)$.
+    The total tax liability function is simply the average tax function times total income $\tau(x,y)(x+y)$.
     \begin{equation}\label{EqTotTaxLiab}
-      T(x,y) \equiv \tau(x,y)\bigl(x + y\bigr) = \bigl(\Phi\Omega + K\bigr)\bigl(x + y\bigr)
+      T(x,y) \equiv \tau(x,y)\bigl(x + y\bigr) = \bigl(\Phi\Lambda + K\bigr)\bigl(x + y\bigr)
     \end{equation}
     For the marginal tax rates in the next section, it will be helpful to rearrange terms in \eqref{EqTotTaxLiab} in the following way, which cancels out the total income term $(x+y)$ with the total income term in the denominator of $\phi$, which appears in both $\Phi$ and $K$.
     \begin{equation}\label{EqTotTaxLiab2}
       \begin{split}
-        T(x,y) &= (\Phi\Omega + K)(x+y) \\
-        &= \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\Omega + x\,min_x + y\,min_y
+        T(x,y) &= (\Phi\Lambda + K)(x+y) \\
+        &= \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\Lambda + x\,min_x + y\,min_y
       \end{split}
     \end{equation}
 
@@ -616,155 +522,125 @@ We model the average effective tax rate as a ratio of polynomials in labor and c
     \begin{equation}\label{EqMTRx}
       \begin{split}
         MTR_x &\equiv \frac{\partial T(x,y)}{\partial x} \\
-        &= (max_x - min_x)\Omega + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Omega}{\partial x} + min_x \\
-        &\text{where}\quad \frac{\partial\Omega}{\partial x} = \frac{(2Ax + Cy + D)F}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^2} > 0
+        &= (max_x - min_x)\Lambda + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Lambda}{\partial x} + min_x \\
+        &\text{where}\quad \frac{\partial\Lambda}{\partial x} = \frac{(2Ax + Cy + D)F}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^2} > 0
       \end{split}
     \end{equation}
     The marginal tax rate with respect to labor income $x$ is not everywhere positive. In particular, $MTR_x>0$ only when the following condition holds.
     \begin{equation}\label{EqMTRxpos}
-      MTR_x>0 \:\:\Leftrightarrow\:\: \Omega\,max_x + (1 - \Omega)min_x > \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Omega}{\partial x}
+      MTR_x>0 \:\:\Leftrightarrow\:\: \Lambda\,max_x + (1 - \Lambda)min_x > \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Lambda}{\partial x}
     \end{equation}
-    This expression holds true more often when $\Omega$ is close to 1, which is when $x$ and $y$ are large. Marginal tax rates are more likely to be negative when minimimum tax rates are negative and when $x$ and $y$ are small ($\Omega$ close to 0). Intuitively, if the minimum tax rate on labor income is negative and an individual shifts more income to labor income $x$ ($\phi\uparrow$), this could reduce their tax liability.
+    This expression holds true more often when $\Lambda$ is close to 1, which is when $x$ and $y$ are large. Marginal tax rates are more likely to be negative when minimimum tax rates are negative and when $x$ and $y$ are small ($\Lambda$ close to 0). Intuitively, if the minimum tax rate on labor income is negative and an individual shifts more income to labor income $x$ ($\phi\uparrow$), this could reduce their tax liability.
 
     The marginal tax rate with respect to capital income $y$ is the following.
     \begin{equation}\label{EqMTRy}
       \begin{split}
         MTR_y &\equiv \frac{\partial T(x,y)}{\partial y} \\
-        &= (max_y - min_y)\Omega + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Omega}{\partial y} + min_y \\
-        &\text{where}\quad \frac{\partial\Omega}{\partial y} = \frac{(2By + Cx + E)F}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^2} > 0
+        &= (max_y - min_y)\Lambda + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Lambda}{\partial y} + min_y \\
+        &\text{where}\quad \frac{\partial\Lambda}{\partial y} = \frac{(2By + Cx + E)F}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^2} > 0
       \end{split}
     \end{equation}
     The marginal tax rate with respect to capital income $y$ is not everywhere positive. In particular, $MTR_x>0$ only when the following condition holds.
     \begin{equation}\label{EqMTRypos}
-      MTR_y>0 \:\:\Leftrightarrow\:\: \Omega\,max_y + (1 - \Omega)min_y > \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Omega}{\partial y}
+      MTR_y>0 \:\:\Leftrightarrow\:\: \Lambda\,max_y + (1 - \Lambda)min_y > \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial\Lambda}{\partial y}
     \end{equation}
     The same intuition as described regarding $MTR_x$ holds true here.
 
-%    We want to impose sufficient conditions on the parameters ($A,B,C,D,E,F$) of the tax rate function $\tau(x,y)$ that guarantee that the household budget set is convex and therefore that a unique solution exists to each of the household Euler equations. One such set of sufficient conditions is that the derivative of the marginal tax rates be strictly negative $\frac{\partial^2 T}{\partial x^2}, \frac{\partial^2 T}{\partial x^2}< 0$ or equivalently $\frac{\partial MTR_x}{\partial x}, \frac{\partial MTR_y}{\partial x} < 0$ for all $x$ and $y$. We first characterize both of these derivatives.
-%    \begin{equation}\label{EqDMTRx}
-%      \begin{split}
-%        &\frac{\partial^2 T}{\partial x^2} = \frac{\partial MTR_x}{\partial x} = 2(max_x - min_x)\frac{\partial\Omega}{\partial x} + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial^2\Omega}{\partial x^2} \\
-%        &\text{where}\quad \frac{\partial^2\Omega}{\partial x^2} = \\
-%        &\frac{2F\bigl[-3A^2x^2 + (AB-C^2)y^2 - 3ACxy - 3ADx + (AE-2CD)y +(AF-D^2)\bigr]}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^3}
-%      \end{split}
-%    \end{equation}
-%
-%    The derivative of $MTR_x$ with respect to $x$ is at least strictly positive in the limits. When $x$ and $y$ go to infinity,
-%    \begin{equation}
-%      \lim_{x,y\rightarrow\infty}\frac{\partial MTR_x}{\partial x} = 0
-%    \end{equation}
-%    because $\frac{\partial\Omega}{\partial x}$ and $\frac{\partial^2\Omega}{\partial x^2}$ both go to zero. When $x$ and $y$ are both small, positive, and close to zero,
-%    \begin{equation}
-%      \lim_{x,y\rightarrow 0^+}\frac{\partial MTR_x}{\partial x} = 2(max_x - min_x)\frac{D}{F} > 0
-%    \end{equation}
-%
-%    The derivative of $MTR_y$ with respect to $y$ is the following.
-%    \begin{equation}\label{EqDMTRy}
-%      \begin{split}
-%        &\frac{\partial^2 T}{\partial y^2} = \frac{\partial MTR_y}{\partial y} = 2(max_y - min_y)\frac{\partial\Omega}{\partial y} + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial^2\Omega}{\partial y^2} \\
-%        &\text{where}\quad \frac{\partial^2\Omega}{\partial y^2} = \\
-%        &\frac{2F\bigl[(AB-C^2)x^2 - 3B^2y^2 - 3BCxy + (BD - 2CE)x - 3BEy + (BF-E^2)\bigr]}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^3}
-%      \end{split}
-%    \end{equation}
-%
-%    The derivative of $MTR_y$ with respect to $y$ is at least strictly positive in the limits. When $x$ and $y$ go to infinity,
-%    \begin{equation}
-%      \lim_{x,y\rightarrow\infty}\frac{\partial MTR_y}{\partial y} = 0
-%    \end{equation}
-%    because $\frac{\partial\Omega}{\partial y}$ and $\frac{\partial^2\Omega}{\partial y^2}$ both go to zero. When $x$ and $y$ are both small, positive, and close to zero,
-%    \begin{equation}
-%      \lim_{x,y\rightarrow 0^+}\frac{\partial MTR_y}{\partial y} = 2(max_y - min_y)\frac{E}{F} > 0
-%    \end{equation}
+    %    We want to impose sufficient conditions on the parameters ($A,B,C,D,E,F$) of the tax rate function $\tau(x,y)$ that guarantee that the household budget set is convex and therefore that a unique solution exists to each of the household Euler equations. One such set of sufficient conditions is that the derivative of the marginal tax rates be strictly negative $\frac{\partial^2 T}{\partial x^2}, \frac{\partial^2 T}{\partial x^2}< 0$ or equivalently $\frac{\partial MTR_x}{\partial x}, \frac{\partial MTR_y}{\partial x} < 0$ for all $x$ and $y$. We first characterize both of these derivatives.
+    %    \begin{equation}\label{EqDMTRx}
+    %      \begin{split}
+    %        &\frac{\partial^2 T}{\partial x^2} = \frac{\partial MTR_x}{\partial x} = 2(max_x - min_x)\frac{\partial\Omega}{\partial x} + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial^2\Omega}{\partial x^2} \\
+    %        &\text{where}\quad \frac{\partial^2\Omega}{\partial x^2} = \\
+    %        &\frac{2F\bigl[-3A^2x^2 + (AB-C^2)y^2 - 3ACxy - 3ADx + (AE-2CD)y +(AF-D^2)\bigr]}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^3}
+    %      \end{split}
+    %    \end{equation}
+    %
+    %    The derivative of $MTR_x$ with respect to $x$ is at least strictly positive in the limits. When $x$ and $y$ go to infinity,
+    %    \begin{equation}
+    %      \lim_{x,y\rightarrow\infty}\frac{\partial MTR_x}{\partial x} = 0
+    %    \end{equation}
+    %    because $\frac{\partial\Omega}{\partial x}$ and $\frac{\partial^2\Omega}{\partial x^2}$ both go to zero. When $x$ and $y$ are both small, positive, and close to zero,
+    %    \begin{equation}
+    %      \lim_{x,y\rightarrow 0^+}\frac{\partial MTR_x}{\partial x} = 2(max_x - min_x)\frac{D}{F} > 0
+    %    \end{equation}
+    %
+    %    The derivative of $MTR_y$ with respect to $y$ is the following.
+    %    \begin{equation}\label{EqDMTRy}
+    %      \begin{split}
+    %        &\frac{\partial^2 T}{\partial y^2} = \frac{\partial MTR_y}{\partial y} = 2(max_y - min_y)\frac{\partial\Omega}{\partial y} + \bigl[x(max_x - min_x) + y(max_y - min_y)\bigr]\frac{\partial^2\Omega}{\partial y^2} \\
+    %        &\text{where}\quad \frac{\partial^2\Omega}{\partial y^2} = \\
+    %        &\frac{2F\bigl[(AB-C^2)x^2 - 3B^2y^2 - 3BCxy + (BD - 2CE)x - 3BEy + (BF-E^2)\bigr]}{(Ax^2 + By^2 + Cxy + Dx + Ey + F)^3}
+    %      \end{split}
+    %    \end{equation}
+    %
+    %    The derivative of $MTR_y$ with respect to $y$ is at least strictly positive in the limits. When $x$ and $y$ go to infinity,
+    %    \begin{equation}
+    %      \lim_{x,y\rightarrow\infty}\frac{\partial MTR_y}{\partial y} = 0
+    %    \end{equation}
+    %    because $\frac{\partial\Omega}{\partial y}$ and $\frac{\partial^2\Omega}{\partial y^2}$ both go to zero. When $x$ and $y$ are both small, positive, and close to zero,
+    %    \begin{equation}
+    %      \lim_{x,y\rightarrow 0^+}\frac{\partial MTR_y}{\partial y} = 2(max_y - min_y)\frac{E}{F} > 0
+    %    \end{equation}
 
-The tax functions above are specific to a given age and tax year.  Thus, average effective tax rates in the DGE model will vary across the age of the model household, the model year, and amounts of capital and labor income.  In this way, the tax function will incorporate some of the variation in statutory rates, as well as heterogeneity in income items, deductions items, credits, filing unit structure, and so forth into the DGE model that cannot account for this degree of heterogeneity.  The effect of such heterogeneity on tax burdens will affect the average effective tax rate functions we fit to the output of the microsimulation model.  For example, if filing units with a primary filer that is 65 years old and with total income of \$60,000 have a higher proportion of income from tax exempt interest than do filing units who also have \$60,000 in total income, but a primary filer who is 40 years old, then the tax functions will be able to account for these different portfolios by finding a lower average effective tax rate for the older filing unit than that younger filing unit, for a given amount of total income.
-
- \subsection{Estimating tax functions}\label{SecEstTaxFunc}
-
- Tax functions of the form above are estimated with output from the microsimulation model.  To map the output of the microsimulation model, which is based on income reported on tax returns, to the DGE model, where income is defined more broadly, we use the following definitions.
-
- To calculate the average effective tax rates from the microsimulation model, we divided total tax liability by a measure of ``adjusted total income".  Adjusted total income is defined as total income (Form 1040, line 22) plus tax-exempt interest income, IRA distributions, pension income, and Social Security benefits (Form 1040, lines 8b, 15a, 16a, and 20a, respectively).
-
- We consider adjusted total income from the microsimulation model to be the counterpart of total income in the DGE model.  Total income in the DGE model is the sum of capital and labor income.  We define labor income as earned income, which is the sum of wages and salaries (Form 1040, line 7) and self-employment income (Form 1040 lines 12 and 18) from the microsimulation model output.  Capital income is defined as a residual.\footnote{This is not an ideal definition of capital income, since it includes transfers between filers (e.g., alimony payments) and from the government (e.g., unemployment insurance), but we have chosen this definition for now in order to ensure that all of total income is classified as either capital or labor income. This accounting will be refined in the future.}
-
-When we look at the raw output from the microsimulation model, we find that there are several observations with extreme values for their average effective tax rate.  Since this is a ratio, such outliers are possible, for example when the denominator, adjusted total income, is very small.  We omit such outliers by making the following restrictions on the raw output of the microsimulation model.  First, we exclude observations with an average effective tax rate greater than 1.5 times the highest statutory marginal tax rate.  Second, we exclude observations where the average effective tax rate is less than the lowest statutory marginal tax rate on income minus the maximum phase-in rate for the Earned Income Tax Credit (EITC).  Finally, since total income cannot be negative in our DGE model, we drop observations from the microsimulation model where adjusted total income is less than \$5.\footnote{We choose \$5 rather than \$0 to provided additional assurance that small income values are not driving large AETRs.}
-
-With the output of the microsimulation model cleaned, we move to our estimation.  We estimate a transformation of the AETR function in Equation \ref{EqATR} separately for each tax year and each year of age of the primary filer.  Specifically, we transform this function from a function of level of income to a function of percentage deviations from mean income.  This helps with the statistical objective function, which under this transformation won't be unduly influenced by the large discrepancies between mean capital and labor income.  The transformed AETR function is estimated using a constrained, weighted, non-linear least squares estimator.  The weighting in this estimator come from the weights assigned to the filers in the microsimulation model.
-
-Let $\Theta=(A,B,C,D,E,F,max_x,min_x,max_y,min_y)$ be the vector of parameters of the tax function.  The estimate $\hat{Theta}$ is then the value of $\Theta$ that solves:
-
-\begin{equation}
-\begin{split}
-&\mathcal{L} = \min_{\Theta} \sum_{i=1}^{N} \left(\tau_{i}-\tau(\Theta,x_{i},y_{i})\right)^{2} w_{i}, \\
-&\quad\quad\quad \text{subject to: } A\geq0, B\geq0, C\geq0, D\geq0, E\geq0, F\geq0, \\
-&\quad\quad\quad\quad\quad\quad\quad max_{x}\geq min_x, max_{y}\geq min_y   
-\end{split}
-\end{equation}
-
-Where $\tau_{i}$ is the average effective tax rate for observation $i$ from the microsimulation output, $x_{i}$ is labor income, $y_{i}$ is capital income, and $w_{i}$ is the sampling weight of this observation.  The number $N$ is the total number of observations from the microsimulation output.  Note that we estimate these functions separately for each age, from 21-80, and tax year separately.  We omit subscripts denoting age and tax year here, but we will have $\hat{Theta}_{s,t}$ for each age, $s$, and tax year, $t$, in the budget window.
-
-PICTURE OF MODEL FIT....e.g., the scatter plot with 3d graph overlayed)
-
-The microsimulation model only estimates the effects of taxation over a 10-year budget window. The DGE model has a time horizon well beyond that.  We assume that the file year tax policy is continued indefinitely from the end of the budget window forward.  In addition, the data provide very few observations of primary filers with ages greater than 80 years old.  The DGE model allows individuals to live for up to 100 periods.  We apply the tax function estimated for 80 year-olds to those with model ages 80-100.
+    The tax functions above are specific to a given age and tax year.  Thus, average effective tax rates in the DGE model will vary across the age of the model household, the model year, and amounts of capital and labor income.  In this way, the tax function will incorporate some of the variation in statutory rates, as well as heterogeneity in income items, deductions items, credits, filing unit structure, and so forth into the DGE model that cannot account for this degree of heterogeneity.  The effect of such heterogeneity on tax burdens will affect the average effective tax rate functions we fit to the output of the microsimulation model.  For example, if filing units with a primary filer that is 65 years old and with total income of \$60,000 have a higher proportion of income from tax exempt interest than do filing units who also have \$60,000 in total income, but a primary filer who is 40 years old, then the tax functions will be able to account for these different portfolios by finding a lower average effective tax rate for the older filing unit than that younger filing unit, for a given amount of total income.
 
 
-TABLE SUMMARIZING estimated parameters and model fit FOR BASELINE POLICY ONLY.
+  \subsection{Estimating tax functions}\label{SecEstTaxFunc}
+
+    Tax functions of the form above are estimated with output from the microsimulation model, a sample of which is shown in Figure \ref{FigMicroTaxData3D}. To map the output of the microsimulation model, which is based on income reported on tax returns, to the DGE model, where income is defined more broadly, we use the following definitions.
+
+    To calculate the average effective tax rates from the microsimulation model, we divided total tax liability by a measure of ``adjusted total income".  Adjusted total income is defined as total income (Form 1040, line 22) plus tax-exempt interest income, IRA distributions, pension income, and Social Security benefits (Form 1040, lines 8b, 15a, 16a, and 20a, respectively).
+
+    We consider adjusted total income from the microsimulation model to be the counterpart of total income in the DGE model. Total income in the DGE model is the sum of capital and labor income. We define labor income as earned income, which is the sum of wages and salaries (Form 1040, line 7) and self-employment income (Form 1040 lines 12 and 18) from the microsimulation model output. Capital income is defined as a residual.\footnote{This is not an ideal definition of capital income, since it includes transfers between filers (e.g., alimony payments) and from the government (e.g., unemployment insurance), but we have chosen this definition for now in order to ensure that all of total income is classified as either capital or labor income. This accounting will be refined in the future.}
+
+    When we look at the raw output from the microsimulation model, we find that there are several observations with extreme values for their average effective tax rate. Since this is a ratio, such outliers are possible, for example when the denominator, adjusted total income, is very small. We omit such outliers by making the following restrictions on the raw output of the microsimulation model. First, we exclude observations with an average effective tax rate greater than 1.5 times the highest statutory marginal tax rate.  Second, we exclude observations where the average effective tax rate is less than the lowest statutory marginal tax rate on income minus the maximum phase-in rate for the Earned Income Tax Credit (EITC).  Finally, since total income cannot be negative in our DGE model, we drop observations from the microsimulation model where adjusted total income is less than \$5.\footnote{We choose \$5 rather than \$0 to provided additional assurance that small income values are not driving large AETRs.}
+
+    With the output of the microsimulation model cleaned, we move to our estimation. We estimate a transformation of the AETR function in Equation \eqref{EqATR} separately for each tax year and each year of age of the primary filer. We estimate separate tax functions of capital income and labor income for each age tax filer in each year $\tau_{s,j}(x,y)$. We also estimate the version of \eqref{EqATR} in which the labor income $x$ and capital income $y$ variables in the polynomials are transformed to percent deviations from their respective means. This helps with the scale of the variables in the optimization routine. The transformed AETR function is estimated using a constrained, weighted, non-linear least squares estimator.  The weighting in this estimator come from the CPS weights assigned to the filers in the microsimulation model.
+
+    \begin{figure}[htbp]\centering \captionsetup{width=5.0in}
+      \caption{\label{FigMicroTaxEst3D}\textbf{Fitted tax function $\tau(x,y)$ versus microsimulation data $\tau_i$: $t=2015$ and $s=43$}}
+      \fbox{\resizebox{5.0in}{4.0in}{\includegraphics{images/MicroTaxEst3D.png}}}
+    \end{figure}
+
+    Let $\bm{\theta}_{s,t}=(A,B,C,D,E,F,max_x,min_x,max_y,min_y)$ be the vector of parameters of the tax function for a particular age of filers in a particular year. The estimate $\bm{\hat{\theta}}_{s,t}$ is the following,
+    \begin{equation}\label{EqThetaWSSQ}
+      \begin{split}
+        \bm{\hat{\theta}}_{s,t} = \bm{\theta}_{s,t}:\quad &\min_{\bm{\theta}_{s,t}}\sum_{i=1}^{N} \Bigl[\tau_{i}-\tau\bigl(x_i,y_i|\bm{\theta}_{s,t}\bigr)\Bigr]^{2} w_i, \\
+        &\qquad\text{subject to}\quad A, B, C, D, E, F, max_x, max_y > 0 \\
+        &\qquad\text{and}\quad max_{x}\geq min_x \quad\text{and}\quad max_{y}\geq min_y
+      \end{split}
+    \end{equation}
+    where $\tau_{i}$ is the average effective tax rate for observation $i$ from the microsimulation output, $\tau(x_i,y_i|\bm{\theta}_{s,t})$ is the predicted average tax rate for individual $i$ with $x_{i}$ labor income and $y_{i}$ capital income given parameters $\bm{\theta}_{s,t}$, and $w_{i}$ is the CPS sampling weight of this observation. The number $N$ is the total number of observations from the microsimulation output for age $s$ and year $t$. Figure \ref{FigMicroTaxEst3D} shows the typical fit of an estimated tax function $\tau_{s,t}\bigl(x,y|\bm{\theta}_{s,t}\bigr)$ to the data. The data in Figure \ref{FigMicroTaxEst3D} are the same age $s=43$ and year $t=2015$ as the data Figure \ref{FigMicroTaxData3D}. The only difference is that we have truncated both labor income $x$ and capital income $y$ in Figure \ref{FigMicroTaxData3D} at \$1 million rather than \$500,000.
+
+    We use the microsimulation model data to estimate $S\times T$ sets of the 10 tax function parameters listed in Table \ref{TabTaxParams}. The total number of years of microsimulation data for which we estimate tax functions corresponds to the budget window of our desired revenue estimates, which is usually $T=10$. Because the DGE model has a time horizon well beyond 10 years, we assume that the file year tax policy in year $T$ is continued indefinitely from the end of the budget window forward. In addition, the data provide very few observations of primary filers with ages greater than 80 years old. The DGE model allows individuals to live for up to 100 periods.  We apply the tax function estimated for 80 year-olds to those with model ages 80-100.
 
 
-%  \subsection{Incorporating tax functions into DGE Model}\label{SecIntegrDGE}
-
-    %Put information here about reading block of parameters into DGE model.
+    \noindent\textcolor{red}{[Insert table summarizing estimated tax function parameters. Show means of all 10 parameters for different age bins across all 10 years.]}
 
 
-e.g., something like:
+  \subsection{Parametrizing the payroll tax system in the DGE model}\label{SecPayrollDGE}
 
-    \begin{table}[htbp] \centering \captionsetup{width=4.7in}
-    \caption{\label{TaxParams}\textbf{List tax policy parameters}}
-      \begin{threeparttable}
-      \begin{tabular}{>{\footnotesize}c |>{\footnotesize}l |>{\footnotesize}c}
-        \hline\hline
-        Symbol & \quad\quad\quad\quad Description & Value \\
-        \hline
-        $A$ & Coefficient on squared term in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-        $B$ & Coefficient on linear term in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-        $C$ & Constant coefficient in $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-        $D$ & Level parameter for $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-        $F$ & Income factor for $\tau^I(\cdot)$ & (see App. \ref{AppIncTaxRate}) \\
-        $\tau^P$ & Payroll tax rate & 0.15 \\
-        $\{\theta^j\}_{j=1}^J$ & Replacement rate by average income & (see App. \ref{AppReplRate}) \\
-        $\tau^{BQ}$ & Bequest (estate) tax rate & 0 \\
-        $P$ & Level parameter for $\tau^W(\cdot)$ & 0 \\
-        $H$ & Coefficient on linear term in $\tau^W(\cdot)$ & 1 \\
-        $M$ & Constant coefficient in $\tau^W(\cdot)$ & 1 \\
-        \hline\hline
-      \end{tabular}
-      % \begin{tablenotes}
-      %   \scriptsize{\item[]Note: Maybe put sources here.}
-      % \end{tablenotes}
-      \end{threeparttable}
-    \end{table}
+    Talk about how use parameters input into the tax calculator to get the DGE model parameters  $\tau^P$ and $\{\theta^j\}_{j=1}^J$.
 
-\subsection{Parametrizing the payroll tax system in the DGE model}\label{SecPayrollDGE}
-
-Talk about how use parameters input into the tax calculator to get the DGE model parameters  $\tau^P$ and $\{\theta^j\}_{j=1}^J$.
 
 \section{An Illustrative Example}\label{SecResults}
 
-Let's show tax function fit under the baseline and a proposed policy (e.g. a flat marginal rate structure).
+  In this section, we show the effects of a tax change to a 17\% flat marginal tax rate for all labor income, an increase in the earned income tax credit (EITC), and an increase in the top capital gains tax rate. We show the effect on the revenue estimates from the microsimulation model as well as the effect of the tax change on macroeconomic variables.
 
-Then we'll show model output - e.g. percentage changes in macro variables that results.
+  \noindent\textcolor{red}{[This section is in progress.]}
 
-This won't be done by Thursday night...
 
 \section{Conclusion}\label{SecConclusion}
 
   Microsimulation models have dominated policy analysis aimed at scoring tax proposals.  These models have a tremendous advantage over macroeconomic models used for dynamic scoring in their ability to model the large amount of heterogeneity across filers and in being able to incorporate very detailed tax proposals that affect specific income and deduction items that cannot feasibly be modeled in a dynamic general equilibrium framework.
 
- In order to bring together this strength of microsimulation models with the benefit of dynamic general equilibrium models that can account for the macroeconomic effects of tax policy, we propose a method to use microsimulations models together with DGE models.  While some information is lost in the translation, one can keep an significant amount of the heterogeneity in the effects of tax policy and incorporate that into a macroeconomic model.  We do this through flexibly parameterized tax functions that are fit to the data output from a microsimulation model.
+  In order to bring together this strength of microsimulation models with the benefit of dynamic general equilibrium models that can account for the macroeconomic effects of tax policy, we propose a method to use microsimulations models together with DGE models.  While some information is lost in the translation, one can keep an significant amount of the heterogeneity in the effects of tax policy and incorporate that into a macroeconomic model.  We do this through flexibly parameterized tax functions that are fit to the data output from a microsimulation model.
 
- Going forward, we hope to more fully integrate the microsimulation and dynamic models by using the macroeconomic effects of tax policy found in the DGE model to update the macroeconomic forecasts used for the proposed policy in the microsimulation model.
+  Going forward, we hope to more fully integrate the microsimulation and dynamic models by using the macroeconomic effects of tax policy found in the DGE model to update the macroeconomic forecasts used for the proposed policy in the microsimulation model.
 
 
-\clearpage
+  \clearpage
+
 
 \end{spacing}
 
@@ -995,11 +871,11 @@ This won't be done by Thursday night...
     \item Make sure that none of the Euler errors is too large in absolute value for interior stationary steady-state values. A steady-state Euler error is the following, which is supposed to be close to zero for all $j$ and $s$:
       \begin{align}
         \begin{split}
-          &\frac{\chi^n_{s}\left(\frac{b}{\tilde{l}}\right)\left(\frac{\bar{n}_{j,s}}{\tilde{l}}\right)^{\upsilon-1}\left[1 - \left(\frac{\bar{n}_{j,s}}{\tilde{l}}\right)^\upsilon\right]^{\frac{1-\upsilon}{\upsilon}}}{(\bar{c}_{j,s})^{-\sigma}\left(\bar{w} e_{j,s} - \frac{\partial\bar{T}_{j,s}}{\partial \bar{n}_{j,s}}\right)} - 1 \\
+          &\frac{\chi^n_{s}\left(\frac{b}{\tilde{l}}\right)\left(\frac{\bar{n}_{j,s}}{\tilde{l}}\right)^{\upsilon-1}\left[1 - \left(\frac{\bar{n}_{j,s}}{\tilde{l}}\right)^\upsilon\right]^{\frac{1-\upsilon}{\upsilon}}}{(\bar{c}_{j,s})^{-\sigma}\left(\bar{w} e_{j,s} - \frac{\partial\bar{T}_{s}}{\partial \bar{n}_{j,s}}\right)} - 1 \\
           &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j\quad\text{and}\quad E+1\leq s\leq E+S
         \end{split} \label{EqSSeulerrLab} \\
         \begin{split}
-          &\frac{e^{-g_y\sigma}\left(\rho_s\chi^b_j \left(\bar{b}_{j,s+1}\right)^{-\sigma} + \beta(1-\rho_s)(\bar{c}_{j,s+1})^{-\sigma}\left[(1 + \bar{r}) - \frac{\partial \bar{T}_{j,s+1}}{\partial \bar{b}_{j,s+1}}\right]\right)}{(\bar{c}_{j,s})^{-\sigma}} - 1 \\
+          &\frac{e^{-g_y\sigma}\left(\rho_s\chi^b_j \left(\bar{b}_{j,s+1}\right)^{-\sigma} + \beta(1-\rho_s)(\bar{c}_{j,s+1})^{-\sigma}\left[(1 + \bar{r}) - \frac{\partial \bar{T}_{s+1}}{\partial \bar{b}_{j,s+1}}\right]\right)}{(\bar{c}_{j,s})^{-\sigma}} - 1 \\
           &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j \quad\text{and}\quad E+1\leq s\leq E+S-1 \\
         \end{split} \label{EqSSeulerrSav} \\
         &\frac{\chi^b_j e^{-g_y\sigma}(\bar{b}_{j,E+S+1})^{-\sigma}}{\left(\bar{c}_{j,E+S}\right)^{-\sigma}} - 1 \quad\forall j \label{EqSSeulerrBeq}
@@ -1012,8 +888,8 @@ This won't be done by Thursday night...
 
   \setcounter{equation}{0}
 
-  This section describes the solution to the non-steady-state transition path equilibrium of the model and outlines the benchmark time path iteration (TPI) method of \citet{AuerbachKotlikoff:1987} for solving the stationary non-steady-state equilibrium transition path of the distribution of savings. 
- 
+  This section describes the solution to the non-steady-state transition path equilibrium of the model and outlines the benchmark time path iteration (TPI) method of \citet{AuerbachKotlikoff:1987} for solving the stationary non-steady-state equilibrium transition path of the distribution of savings.
+
   \vspace{10mm}
 
   \noindent Taken together, the individual labor-leisure and intended bequest decisions in the last period of life show that the optimal labor supply and optimal intended bequests for age $s=E+S$ are each functions of individual savings, total bequests received, and the prices in that period: $n_{j,E+S,t}=\phi\bigl(\hat{b}_{j,E+S,t},\hat{BQ}_{j,t},\hat{w}_t,r_t\bigr)$ and $\hat{b}_{j,E+S+1,t+1}=\psi\bigl(\hat{b}_{j,E+S,t},\hat{BQ}_{j,t},\hat{w}_t,r_t\bigr)$. These two decisions are characterized by final-age version of the static labor supply Euler equation \eqref{EqEulerLabStat} and the static intended bequests Euler equation \eqref{EqEulerSavEpSstat}. individuals in their second-to-last period of life in period $t$ have four decisions to make. They must choose how much to work this period, $n_{j,E+S-1,t}$, and next period, $n_{j,E+S,t+1}$, how much to save this period for next period, $\hat{b}_{j,E+S,t+1}$, and how much to bequeath next period, $\hat{b}_{j,E+S+1,t+2}$. The optimal responses for this individual are characterized by the $s=E+S-1$ and $s=E+S$ versions of the static Euler equations \eqref{EqEulerLabStat}, the $s=E+S-1$ version of the intertemporal Euler equation \eqref{EqEulerSavStat}, and the $s=E+S$ static bequest Euler equation \eqref{EqEulerSavEpSstat}, respectively.
@@ -1069,12 +945,10 @@ This won't be done by Thursday night...
   Given the initial savings distribution $\bm{\hat{\Gamma}}_1$ and the transition paths of aggregate capital $\bm{\hat{K}}^i = \left\{\hat{K}_1^i,\hat{K}_2^i,...\hat{K}_T^i\right\}$, aggregate labor $\bm{\hat{L}}^i = \left\{\hat{L}_1^i,\hat{L}_2^i,...\hat{L}_T^i\right\}$, and total bequests received $\bm{\hat{BQ}}_j^i = \left\{\hat{BQ}_{j,1}^i,\hat{BQ}_{j,2}^i,...\hat{BQ}_{j,T}^i\right\}$, as well as the resulting real wage $\bm{\hat{w}}^i = \left\{\hat{w}_1^i,\hat{w}_2^i,...\hat{w}_T^i\right\}$, and real return to savings $\bm{r}^i = \left\{r_1^i,r_2^i,...r_T^i\right\}$, one can solve for the period-1 optimal labor supply and intended bequests for each type $j$ of $s=E+S$-aged agents in the last period of their lives $n_{j,E+S,1}=\phi_{j,E+S}(\hat{b}_{j,E+S,1},\hat{BQ}_{j,E+S,1},\hat{w}_1,r_1)$ and $\hat{b}_{j,E+S+1,2}=\psi_{j,E+S}(\hat{b}_{j,E+S,1},\hat{BQ}_{j,E+S,1},\hat{w}_1,r_1)$ using his two $s=E+S$ static Euler equations \eqref{EqEulerLabStat} and \eqref{EqEulerSavEpSstat}.
   \begin{equation}\label{EqEulerSlabt1}
     \begin{split}
-      &(\hat{c}_{j,E+S,1})^{-\sigma}\Biggl(\hat{w}_1^i e_{j,E+S} - \frac{\partial\hat{T}_{j,E+S,1}}{\partial n_{j,E+S,1}}\Biggr) = ... \\
+      &(\hat{c}_{j,E+S,1})^{-\sigma}\Biggl(\hat{w}_1^i e_{j,E+S} - \frac{\partial\hat{T}_{E+S,1}}{\partial n_{j,E+S,1}}\Biggr) = ... \\
       &\qquad\qquad\qquad\qquad \chi^n_{E+S}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,E+S,1}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,E+S,1}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \quad\forall j \\
       &\quad\text{where}\quad \hat{c}_{j,E+S,1} = ... \\
-      &\qquad\qquad\qquad \left(1 + r_1^i\right)\hat{b}_{j,E+S,1} + \hat{w}_1^i e_{j,E+S}n_{j,E+S,1} + \frac{\hat{BQ}_{j,1}}{\lambda_j} - e^{g_y}\hat{b}_{j,E+S+1,2} - \hat{T}_{j,E+S,1} \\
-      &\quad\text{and}\quad \frac{\partial \hat{T}_{j,E+S,1}}{\partial n_{j,E+S,1}} = ... \\
-      &\qquad\qquad\qquad \hat{w}_1^i e_{j,E+S}\biggl[\tau^I\bigl(F\hat{a}_{j,E+S,1}\bigr) + \frac{\hat{a}_{j,E+S,1}CDF\bigl[2A(F\hat{a}_{j,E+S,1})+B\bigr]}{\bigl[A(F\hat{a}_{j,E+S,1})^2+B(F \hat{a}_{j,E+S,1})+C\bigr]^2} + \tau^P\Biggr]
+      &\qquad\qquad\qquad \left(1 + r_1^i\right)\hat{b}_{j,E+S,1} + \hat{w}_1^i e_{j,E+S}n_{j,E+S,1} + \frac{\hat{BQ}_{j,1}}{\lambda_j} - e^{g_y}\hat{b}_{j,E+S+1,2} - \hat{T}_{E+S,1}
     \end{split}
   \end{equation}
   \begin{equation}\label{EqEulerSbeqt1}
@@ -1085,23 +959,20 @@ This won't be done by Thursday night...
   We then solve the problem for all $j$ types of $E+S-1$-aged individuals in period $t=1$, each of which entails labor supply decisions in the current period $n_{j,E+S-1,1}$ and in the next period $n_{j,E+S,2}$, a savings decision in the current period for the next period $\hat{b}_{j,E+S,2}$ and an intended bequest decision in the last period $\hat{b}_{j,E+S+1,3}$. The labor supply decision in the initial period and the savings period in the initial period for the next period for each type $j$ of $E+S-1$-aged individuals are policy functions of the current savings and the total bequests received and prices in this period and the next $\hat{b}_{j,E+S,2} = \psi_{j,E+S-1}(\hat{b}_{j,E+S-1,1},\{\hat{BQ}_{j,t},\hat{w}_t,r_t\}_{t=1}^2)$ and $\hat{n}_{j,E+S-1,1} = \phi_{j,E+S-1}(\hat{b}_{j,E+S-1,1},\{\hat{BQ}_{j,t},\hat{w}_t,r_t\}_{t=1}^2)$. The labor supply and intended bequests decisions in the next period are simply functions of the savings, total bequests received, and prices in that period $\hat{n}_{j,E+S,2} = \phi_{j,E+S}(\hat{b}_{j,E+S,2},\hat{BQ}_{j,2},\hat{w}_2,r_2)$ and $\hat{b}_{j,E+S+1,3} = \psi_{j,E+S}(\hat{b}_{j,E+S,2},\hat{BQ}_{j,2},\hat{w}_2,r_2)$. These four functions are characterized by the following versions of equations \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}.
   \begin{equation}\label{EqEulerSm1labt1}
     \begin{split}
-      &(\hat{c}_{j,E+S-1,1})^{-\sigma}\Biggl(\hat{w}_1^i e_{j,E+S-1} - \frac{\partial\hat{T}_{j,E+S-1,1}}{\partial n_{j,E+S-1,1}}\Biggr) = ... \\
+      &(\hat{c}_{j,E+S-1,1})^{-\sigma}\Biggl(\hat{w}_1^i e_{j,E+S-1} - \frac{\partial\hat{T}_{E+S-1,1}}{\partial n_{j,E+S-1,1}}\Biggr) = ... \\
       &\qquad\qquad\qquad \chi^n_{E+S-1}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,E+S-1,1}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,E+S-1,1}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \quad\forall j
     \end{split}
   \end{equation}
   \begin{equation}\label{EqEulerSm1savt1}
     \begin{split}
       &(\hat{c}_{j,E+S-1,1})^{-\sigma} = ... \\
-      &e^{-g_y\sigma}\Biggl(\rho_{E+S-1}\chi^b_j \bigl(\hat{b}_{j,E+S,2}\bigr)^{-\sigma} + \beta(1-\rho_{E+S-1})(\hat{c}_{j,E+S,2})^{-\sigma}\Biggl[(1 + r_2^i) - \frac{\partial T_{j,E+S,2}}{\partial b_{j,E+S,2}}\Biggr]\Biggr) \\
-      &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j \\
-      &\qquad\text{where}\quad \frac{\partial T_{j,E+S,2}}{\partial b_{j,E+S,2}} = ...\\
-      &\qquad\qquad r_2^i\Biggl(\tau^I(F\hat{a}_{j,E+S,2}) + \frac{F\hat{a}_{j,E+S,2}CD\left[2A(F\hat{a}_{j,E+S,2}) + B\right]}{\left[A(F\hat{a}_{j,E+S,2})^2 + B(F\hat{a}_{j,E+S,2}) + C\right]^2}\Biggr) ... \\
-      &\qquad\qquad \tau^W(\hat{b}_{j,E+S,2}) + \frac{\hat{b}_{j,E+S,2}PHM}{\left(H\hat{b}_{j,E+S,2} + M\right)^2}
+      &e^{-g_y\sigma}\Biggl(\rho_{E+S-1}\chi^b_j \bigl(\hat{b}_{j,E+S,2}\bigr)^{-\sigma} + \beta(1-\rho_{E+S-1})(\hat{c}_{j,E+S,2})^{-\sigma}\Biggl[(1 + r_2^i) - \frac{\partial \hat{T}_{E+S,2}}{\partial b_{j,E+S,2}}\Biggr]\Biggr) \\
+      &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\forall j
     \end{split}
   \end{equation}
   \begin{equation}\label{EqEulerSlabt2}
     \begin{split}
-      &(\hat{c}_{j,E+S,2})^{-\sigma}\Biggl(\hat{w}_2^i e_{j,E+S} - \frac{\partial\hat{T}_{j,E+S,2}}{\partial n_{j,E+S,2}}\Biggr) = ... \\
+      &(\hat{c}_{j,E+S,2})^{-\sigma}\Biggl(\hat{w}_2^i e_{j,E+S} - \frac{\partial\hat{T}_{E+S,2}}{\partial n_{j,E+S,2}}\Biggr) = ... \\
       &\qquad\qquad\qquad \chi^n_{E+S}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,E+S,2}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,E+S,2}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \quad\forall j
     \end{split}
   \end{equation}
@@ -1113,7 +984,7 @@ This won't be done by Thursday night...
   This process is repeated for every age of individual alive in $t=1$ down to the age $s=E+1$ individual at time $t=1$. Each of these individuals $j$ solves the full set of remaining $S-s+1$ labor supply decisions, $S-s$ savings decisions, and one intended bequest decision at the end of life. After the full set of lifetime decisions has been solved for all the individuals alive at time $t=1$, each ability $j$ individual born in period $t\geq 2$ can be solved for, the solution to which is characterized by the following full set of Euler equations analogous to \eqref{EqEulerLabStat}, \eqref{EqEulerSavStat}, and \eqref{EqEulerSavEpSstat}.
   \begin{equation}\label{EqEulerslabt}
     \begin{split}
-      &(\hat{c}_{j,s,t})^{-\sigma}\Biggl(\hat{w}_t^i e_{j,s} - \frac{\partial\hat{T}_{j,s,t}}{\partial n_{j,s,t}}\Biggr) =  \chi^n_{s}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \\
+      &(\hat{c}_{j,s,t})^{-\sigma}\Biggl(\hat{w}_t^i e_{j,s} - \frac{\partial\hat{T}_{s,t}}{\partial n_{j,s,t}}\Biggr) =  \chi^n_{s}\biggl(\frac{b}{\tilde{l}}\biggr)\biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^{\upsilon-1}\Biggl[1 - \biggl(\frac{n_{j,s,t}}{\tilde{l}}\biggr)^\upsilon\Biggr]^{\frac{1-\upsilon}{\upsilon}} \\
       &\qquad\qquad\qquad\qquad\qquad\forall j \quad\text{and}\quad E+1\leq s\leq E+S\quad\text{and}\quad t\geq 2
     \end{split}
   \end{equation}
@@ -1121,7 +992,7 @@ This won't be done by Thursday night...
   \begin{equation}\label{EqEulersSavt}
     \begin{split}
       &(\hat{c}_{j,s,t})^{-\sigma} = ... \\
-      &e^{-g_y\sigma}\Biggl(\rho_{s}\chi^b_j \bigl(\hat{b}_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_{s})(\hat{c}_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}^i) - \frac{\partial T_{j,s+1,t+1}}{\partial b_{j,s+1,t+1}}\Biggr]\Biggr) \\
+      &e^{-g_y\sigma}\Biggl(\rho_{s}\chi^b_j \bigl(\hat{b}_{j,s+1,t+1}\bigr)^{-\sigma} + \beta(1-\rho_{s})(\hat{c}_{j,s+1,t+1})^{-\sigma}\Biggl[(1 + r_{t+1}^i) - \frac{\partial\hat{T}_{s+1,t+1}}{\partial b_{j,s+1,t+1}}\Biggr]\Biggr) \\
       &\qquad\qquad\qquad\forall j \quad\text{and}\quad E+1\leq s\leq E+S-1 \quad\text{and}\quad t\geq 2
     \end{split}
   \end{equation}
